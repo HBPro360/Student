@@ -8,13 +8,21 @@ Public Class StudentPhoneList
 
 #Region " Private Members "
     Private WithEvents _List As BindingList(Of StudentPhone)
-
+    Private _BrokenRules As BrokenRuleList
 #End Region
 
 #Region " Public Properties "
     Public ReadOnly Property List As BindingList(Of StudentPhone)
         Get
             Return _List
+        End Get
+    End Property
+    Public ReadOnly Property BrokenRules As BrokenRuleList
+        Get
+            For Each br As BrokenRule In _BrokenRules.List
+                _BrokenRules.List.Add(br)
+            Next
+            Return _BrokenRules
         End Get
     End Property
 #End Region
@@ -97,6 +105,7 @@ Public Class StudentPhoneList
 #Region " Contructors "
     Public Sub New()
         _List = New BindingList(Of StudentPhone)
+        _BrokenRules = New BrokenRuleList()
     End Sub
 
     Private Sub studentPhone_Savable(e As SavableEventArgs)

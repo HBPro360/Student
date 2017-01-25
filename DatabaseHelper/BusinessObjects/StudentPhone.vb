@@ -9,9 +9,15 @@ Public Class StudentPhone
     Private _PhoneTypeID As Guid
     Private _Phone As String
     Private _IsPasswordPending As Boolean
+    Private _BrokenRules As BrokenRuleList
 #End Region
 
 #Region " Public Properties "
+    Public ReadOnly Property BrokenRules As BrokenRuleList
+        Get
+            Return _BrokenRules
+        End Get
+    End Property
 
     Public ReadOnly Property FullName
         Get
@@ -151,18 +157,22 @@ Public Class StudentPhone
     Private Function IsValid() As Boolean
         Dim result As Boolean = True
         If _PhoneTypeID = Guid.Empty Then
+            _BrokenRules.List.Add(New BrokenRule("Phone Type must be Selected."))
             result = False
         End If
 
         If _Phone.Trim = String.Empty Then
+            _BrokenRules.List.Add(New BrokenRule("Phone must be Present."))
             result = False
         End If
 
         If _Phone.Trim.Length <> 10 Then
+            _BrokenRules.List.Add(New BrokenRule("Phone must consist of 10 numbers."))
             result = False
         End If
 
         If IsNumeric(_Phone.ToString()) = False Then
+            _BrokenRules.List.Add(New BrokenRule("Phone must be numeric."))
             result = False
         End If
         Return result
@@ -266,6 +276,7 @@ Public Class StudentPhone
         _PhoneTypeID = Guid.Empty
         _Phone = String.Empty
         _IsPasswordPending = False
+        _BrokenRules = New BrokenRuleList
     End Sub
 
 #End Region

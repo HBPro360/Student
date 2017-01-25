@@ -67,6 +67,8 @@
   <ItemGroup>
     <Compile Include="AddressType.vb" />
     <Compile Include="AddressTypeList.vb" />
+    <Compile Include="BrokenRule.vb" />
+    <Compile Include="BrokenRuleList.vb" />
     <Compile Include="EmailType.vb" />
     <Compile Include="EmailTypeList.vb" />
     <Compile Include="Event.vb" />

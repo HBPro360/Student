@@ -14,10 +14,24 @@ Public Class Student
     Private _Phones As StudentPhoneList
     Private _Emails As StudentEmailList
     Private _Addresses As StudentAddressList
+    Private _BrokenRules As BrokenRuleList
 #End Region
 
 #Region " Public Properties "
-
+    Public ReadOnly Property BrokenRules As BrokenRuleList
+        Get
+            For Each br As BrokenRule In _Phones.BrokenRules.List
+                _BrokenRules.List.Add(br)
+            Next
+            'For Each br As BrokenRule In _Emails.BrokenRules.List
+            '    _BrokenRules.List.Add(br)
+            'Next
+            'For Each br As BrokenRule In _Addresses.BrokenRules.List
+            '    _BrokenRules.List.Add(br)
+            'Next
+            Return _BrokenRules
+        End Get
+    End Property
     Public ReadOnly Property Phones As StudentPhoneList
         Get
             If _Phones Is Nothing Then
@@ -164,6 +178,7 @@ Public Class Student
             result = False
             Throw
         End Try
+        Return result
     End Function
 
     Private Function Update(database As Database) As Boolean
@@ -209,27 +224,33 @@ Public Class Student
             result = False
             Throw
         End Try
+        Return result
     End Function
 
     Private Function IsValid() As Boolean
         Dim result As Boolean = True
         If _FirstName.Trim = String.Empty Then
+            _BrokenRules.List.Add(New BrokenRule("First Name must be present."))
             result = False
         End If
 
         If _LastName.Trim = String.Empty Then
+            _BrokenRules.List.Add(New BrokenRule("Last Name must be present."))
             result = False
         End If
 
         If _Email.Trim = String.Empty Then
+            _BrokenRules.List.Add(New BrokenRule("Email must be present."))
             result = False
         End If
 
         If _Password = String.Empty Then
+            _BrokenRules.List.Add(New BrokenRule("Password must be present."))
             result = False
         End If
 
         If _ProgramID = Guid.Empty Then
+            _BrokenRules.List.Add(New BrokenRule("Program must be present."))
             result = False
         End If
 
@@ -371,6 +392,7 @@ Public Class Student
         _Phones = Nothing
         _Emails = Nothing
         _Addresses = Nothing
+        _BrokenRules = New BrokenRuleList
     End Sub
 
 #End Region
