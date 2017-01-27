@@ -53,6 +53,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuShowErrors = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tpStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudent)).BeginInit();
@@ -84,7 +85,7 @@
             this.tpStudents.Location = new System.Drawing.Point(4, 22);
             this.tpStudents.Name = "tpStudents";
             this.tpStudents.Padding = new System.Windows.Forms.Padding(3);
-            this.tpStudents.Size = new System.Drawing.Size(592, 513);
+            this.tpStudents.Size = new System.Drawing.Size(592, 489);
             this.tpStudents.TabIndex = 0;
             this.tpStudents.Text = "Students";
             this.tpStudents.UseVisualStyleBackColor = true;
@@ -100,7 +101,7 @@
             this.dgvStudent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvStudent.Location = new System.Drawing.Point(3, 3);
             this.dgvStudent.Name = "dgvStudent";
-            this.dgvStudent.Size = new System.Drawing.Size(586, 507);
+            this.dgvStudent.Size = new System.Drawing.Size(586, 483);
             this.dgvStudent.TabIndex = 0;
             // 
             // FullName
@@ -133,7 +134,7 @@
             this.tpStudentPhones.Location = new System.Drawing.Point(4, 22);
             this.tpStudentPhones.Name = "tpStudentPhones";
             this.tpStudentPhones.Padding = new System.Windows.Forms.Padding(3);
-            this.tpStudentPhones.Size = new System.Drawing.Size(592, 513);
+            this.tpStudentPhones.Size = new System.Drawing.Size(592, 489);
             this.tpStudentPhones.TabIndex = 1;
             this.tpStudentPhones.Text = "Student Phones";
             this.tpStudentPhones.UseVisualStyleBackColor = true;
@@ -148,7 +149,7 @@
             this.dgvStudentPhone.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dgvStudentPhone.Location = new System.Drawing.Point(3, 3);
             this.dgvStudentPhone.Name = "dgvStudentPhone";
-            this.dgvStudentPhone.Size = new System.Drawing.Size(586, 507);
+            this.dgvStudentPhone.Size = new System.Drawing.Size(586, 483);
             this.dgvStudentPhone.TabIndex = 0;
             // 
             // Phones
@@ -169,7 +170,7 @@
             this.tpStudentEmails.Location = new System.Drawing.Point(4, 22);
             this.tpStudentEmails.Name = "tpStudentEmails";
             this.tpStudentEmails.Padding = new System.Windows.Forms.Padding(3);
-            this.tpStudentEmails.Size = new System.Drawing.Size(592, 513);
+            this.tpStudentEmails.Size = new System.Drawing.Size(592, 489);
             this.tpStudentEmails.TabIndex = 2;
             this.tpStudentEmails.Text = "Student Emails";
             this.tpStudentEmails.UseVisualStyleBackColor = true;
@@ -183,7 +184,7 @@
             this.dgvStudentEmail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvStudentEmail.Location = new System.Drawing.Point(3, 3);
             this.dgvStudentEmail.Name = "dgvStudentEmail";
-            this.dgvStudentEmail.Size = new System.Drawing.Size(586, 507);
+            this.dgvStudentEmail.Size = new System.Drawing.Size(586, 483);
             this.dgvStudentEmail.TabIndex = 0;
             // 
             // Emails
@@ -267,7 +268,8 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuSave});
+            this.mnuSave,
+            this.mnuShowErrors});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -278,6 +280,13 @@
             this.mnuSave.Size = new System.Drawing.Size(152, 22);
             this.mnuSave.Text = "Save";
             this.mnuSave.Click += new System.EventHandler(this.mnuSave_Click);
+            // 
+            // mnuShowErrors
+            // 
+            this.mnuShowErrors.Name = "mnuShowErrors";
+            this.mnuShowErrors.Size = new System.Drawing.Size(152, 22);
+            this.mnuShowErrors.Text = "Show Errors";
+            this.mnuShowErrors.Click += new System.EventHandler(this.mnuShowErrors_Click);
             // 
             // frmStudent
             // 
@@ -334,6 +343,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnuSave;
+        private System.Windows.Forms.ToolStripMenuItem mnuShowErrors;
     }
 }
 

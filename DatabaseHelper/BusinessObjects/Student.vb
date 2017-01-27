@@ -23,12 +23,12 @@ Public Class Student
             For Each br As BrokenRule In _Phones.BrokenRules.List
                 _BrokenRules.List.Add(br)
             Next
-            'For Each br As BrokenRule In _Emails.BrokenRules.List
-            '    _BrokenRules.List.Add(br)
-            'Next
-            'For Each br As BrokenRule In _Addresses.BrokenRules.List
-            '    _BrokenRules.List.Add(br)
-            'Next
+            For Each br As BrokenRule In _Emails.BrokenRules.List
+                _BrokenRules.List.Add(br)
+            Next
+            For Each br As BrokenRule In _Addresses.BrokenRules.List
+                _BrokenRules.List.Add(br)
+            Next
             Return _BrokenRules
         End Get
     End Property
@@ -229,6 +229,8 @@ Public Class Student
 
     Private Function IsValid() As Boolean
         Dim result As Boolean = True
+        _BrokenRules.List.Clear()
+
         If _FirstName.Trim = String.Empty Then
             _BrokenRules.List.Add(New BrokenRule("First Name must be present."))
             result = False
@@ -360,9 +362,10 @@ Public Class Student
 
     Public Function IsSavable() As Boolean
         Dim result As Boolean = False
-        If MyBase.IsDirty = True AndAlso IsValid() = True _
-            OrElse _Emails IsNot Nothing AndAlso _Emails.isSavable() = True _
-            OrElse _Phones IsNot Nothing AndAlso _Phones.isSavable() = True Then
+        If (MyBase.IsDirty = True AndAlso IsValid() = True) _
+            OrElse (_Emails IsNot Nothing AndAlso _Emails.isSavable() = True) _
+            OrElse (_Phones IsNot Nothing AndAlso _Phones.isSavable() = True) _
+            OrElse (_Addresses IsNot Nothing AndAlso _Addresses.isSavable() = True) Then
             result = True
         End If
         Return result

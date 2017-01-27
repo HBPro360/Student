@@ -8,9 +8,16 @@ Public Class StudentEmail
     Private _StudentID As Guid
     Private _EmailTypeID As Guid
     Private _Email As String
+    Private _BrokenRules As BrokenRuleList
 #End Region
 
 #Region " Public Properties "
+
+    Public ReadOnly Property BrokenRules As BrokenRuleList
+        Get
+            Return _BrokenRules
+        End Get
+    End Property
 
     Public ReadOnly Property FullName
         Get
@@ -137,11 +144,14 @@ Public Class StudentEmail
 
     Private Function IsValid() As Boolean
         Dim result As Boolean = True
+        _BrokenRules.List.Clear()
         If _EmailTypeID = Guid.Empty Then
+            _BrokenRules.List.Add(New BrokenRule("Email type must be present."))
             result = False
         End If
 
         If _Email.Trim = String.Empty Then
+            _BrokenRules.List.Add(New BrokenRule("Email address must be present."))
             result = False
         End If
 
@@ -245,6 +255,7 @@ Public Class StudentEmail
         _StudentID = Guid.Empty
         _EmailTypeID = Guid.Empty
         _Email = String.Empty
+        _BrokenRules = New BrokenRuleList
     End Sub
 
 #End Region

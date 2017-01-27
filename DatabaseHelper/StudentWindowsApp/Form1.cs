@@ -19,7 +19,6 @@ namespace StudentWindowsApp
         EmailTypeList emailTypeList;
         AddressTypeList addressTypeList;
         Student student;
-
         public frmStudent()
         {
             InitializeComponent();
@@ -43,8 +42,15 @@ namespace StudentWindowsApp
         }
 
         private void StudentList_Savable(SavableEventArgs e)
-        {
+        {           
             mnuSave.Enabled = e.Savable;
+            mnuShowErrors.Enabled = !e.Savable;
+            if (e.Savable == false)
+            {
+                student.IsSavable();
+                // mnuShowErrors.PerformClick();
+            }
+            
         }
 
         private void DgvStudentAddress_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -175,12 +181,25 @@ namespace StudentWindowsApp
             studentList.Savable += StudentList_Savable;
             dgvStudent.DataSource = studentList.List;
             mnuSave.Enabled = false;
+            mnuShowErrors.Enabled = false;
         }
 
         private void mnuSave_Click(object sender, EventArgs e)
         {
             student.Save();
             mnuSave.Enabled = false;
+            mnuShowErrors.Enabled = false;
+        }
+
+        private void mnuShowErrors_Click(object sender, EventArgs e)
+        {
+            if (student.BrokenRules.List.Count > 0)
+            {
+                frmBrokenRules frm = new frmBrokenRules();
+                frm.Show();
+                frm.BrokenRules = student.BrokenRules;
+            }
+
         }
     }
 }

@@ -2,8 +2,10 @@
 Imports DatabaseHelper
 
 Public Class StudentAddressList
+    Inherits [Event]
 #Region " Private Members "
     Private WithEvents _List As BindingList(Of StudentAddress)
+    Private _BrokenRules As BrokenRuleList
 
 #End Region
 
@@ -13,6 +15,16 @@ Public Class StudentAddressList
             Return _List
         End Get
     End Property
+
+    Public ReadOnly Property BrokenRules As BrokenRuleList
+        Get
+            For Each br As BrokenRule In _BrokenRules.List
+                _BrokenRules.List.Add(br)
+            Next
+            Return _BrokenRules
+        End Get
+    End Property
+
 #End Region
 
 #Region " Private Methods "
@@ -31,7 +43,7 @@ Public Class StudentAddressList
             studentAddress.Initialize(dr)
             studentAddress.InitializeBusinessData(dr)
             studentAddress.IsNew = False
-            _List.Add(StudentAddress)
+            _List.Add(studentAddress)
         Next
         Return Me
     End Function
@@ -90,6 +102,11 @@ Public Class StudentAddressList
 #Region " Contructors "
     Public Sub New()
         _List = New BindingList(Of StudentAddress)
+        _BrokenRules = New BrokenRuleList()
+    End Sub
+
+    Private Sub studentPhone_Savable(e As SavableEventArgs)
+        RaiseOurEvent(e)
     End Sub
 
 #End Region

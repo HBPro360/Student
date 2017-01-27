@@ -11,9 +11,16 @@ Public Class StudentAddress
     Private _City As String
     Private _State As String
     Private _ZipCode As String
+    Private _BrokenRules As BrokenRuleList
 #End Region
 
 #Region " Public Properties "
+
+    Public ReadOnly Property BrokenRules As BrokenRuleList
+        Get
+            Return _BrokenRules
+        End Get
+    End Property
 
     Public ReadOnly Property FullName
         Get
@@ -202,23 +209,30 @@ Public Class StudentAddress
 
     Private Function IsValid() As Boolean
         Dim result As Boolean = True
+        _BrokenRules.List.Clear()
+
         If _AddressTypeID = Guid.Empty Then
+            _BrokenRules.List.Add(New BrokenRule("Address type must be selected."))
             result = False
         End If
 
         If _Address.Trim = String.Empty Then
+            _BrokenRules.List.Add(New BrokenRule("Address must be present."))
             result = False
         End If
 
         If _City.Trim = String.Empty Then
+            _BrokenRules.List.Add(New BrokenRule("City must be present."))
             result = False
         End If
 
         If _State.Trim = String.Empty Then
+            _BrokenRules.List.Add(New BrokenRule("State must be present."))
             result = False
         End If
 
         If _ZipCode.Trim = String.Empty Then
+            _BrokenRules.List.Add(New BrokenRule("Zip code must be present."))
             result = False
         End If
 
@@ -328,6 +342,7 @@ Public Class StudentAddress
         _City = String.Empty
         _State = String.Empty
         _ZipCode = String.Empty
+        _BrokenRules = New BrokenRuleList
     End Sub
 
 #End Region
