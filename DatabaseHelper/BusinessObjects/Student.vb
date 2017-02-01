@@ -20,14 +20,30 @@ Public Class Student
 #Region " Public Properties "
     Public ReadOnly Property BrokenRules As BrokenRuleList
         Get
-            For Each br As BrokenRule In _Phones.BrokenRules.List
-                _BrokenRules.List.Add(br)
+            _BrokenRules.List.Clear()
+            Me.IsSavable() ' This is the parent's broken rules
+
+            For Each sp As StudentPhone In _Phones.List
+                If sp.BrokenRules.List.Count > 0 Then
+                    For Each br As BrokenRule In sp.BrokenRules.List
+                        _BrokenRules.List.Add(br)
+                    Next
+                End If
+
             Next
-            For Each br As BrokenRule In _Emails.BrokenRules.List
-                _BrokenRules.List.Add(br)
+            For Each se As StudentEmail In _Emails.List
+                If se.BrokenRules.List.Count > 0 Then
+                    For Each br As BrokenRule In se.BrokenRules.List
+                        _BrokenRules.List.Add(br)
+                    Next
+                End If
             Next
-            For Each br As BrokenRule In _Addresses.BrokenRules.List
-                _BrokenRules.List.Add(br)
+            For Each sa As StudentAddress In _Addresses.List
+                If sa.BrokenRules.List.Count > 0 Then
+                    For Each br As BrokenRule In sa.BrokenRules.List
+                        _BrokenRules.List.Add(br)
+                    Next
+                End If
             Next
             Return _BrokenRules
         End Get

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2486D912-4BA2-48EA-85E2-038AC777BEEC}</ProjectGuid>
+    <ProjectGuid>{C8BD8D56-6C52-4C47-8D74-541C955EBD70}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>BusinessObjects</RootNamespace>
-    <AssemblyName>BusinessObjects</AssemblyName>
+    <RootNamespace>DataTypeHelper</RootNamespace>
+    <AssemblyName>DataTypeHelper</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
@@ -18,7 +18,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>BusinessObjects.xml</DocumentationFile>
+    <DocumentationFile>DataTypeHelper.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -27,7 +27,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>BusinessObjects.xml</DocumentationFile>
+    <DocumentationFile>DataTypeHelper.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -45,8 +45,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.EnterpriseServices" />
-    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -65,14 +63,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddressType.vb" />
-    <Compile Include="AddressTypeList.vb" />
-    <Compile Include="BrokenRule.vb" />
-    <Compile Include="BrokenRuleList.vb" />
-    <Compile Include="EmailType.vb" />
-    <Compile Include="EmailTypeList.vb" />
-    <Compile Include="Event.vb" />
-    <Compile Include="HeaderData.vb" />
+    <Compile Include="SearchCriteria.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -88,25 +79,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="PhoneType.vb" />
-    <Compile Include="PhoneTypeList.vb" />
-    <Compile Include="Program.vb" />
-    <Compile Include="ProgramList.vb" />
-    <Compile Include="SavableEventArgs.vb" />
-    <Compile Include="Student.vb" />
-    <Compile Include="StudentAddress.vb" />
-    <Compile Include="StudentAddressList.vb" />
-    <Compile Include="StudentEmail.vb" />
-    <Compile Include="StudentEmailList.vb" />
-    <Compile Include="StudentList.vb" />
-    <Compile Include="StudentPhone.vb" />
-    <Compile Include="StudentPhoneList.vb" />
-    <Compile Include="Web References\localhost.Zipcode.www\Reference.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
-    </Compile>
-    <Compile Include="ZipCode.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -117,7 +89,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -127,50 +98,6 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="Web References\localhost.Zipcode.www\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.vb</LastGenOutput>
-    </None>
-    <None Include="Web References\localhost.Zipcode.www\StudentWebService.wsdl" />
-    <None Include="Web References\localhost.Zipcode.www\ZipCode.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DatabaseHelper\DatabaseHelper.vbproj">
-      <Project>{d63a243c-835e-46e5-b696-17c1d12012a2}</Project>
-      <Name>DatabaseHelper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataTypeHelper\DataTypeHelper.vbproj">
-      <Project>{c8bd8d56-6c52-4c47-8d74-541c955ebd70}</Project>
-      <Name>DataTypeHelper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SQLHelper\SQLHelper.vbproj">
-      <Project>{8347f81d-2f5e-4aac-8920-c4c60f0a5d54}</Project>
-      <Name>SQLHelper</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferences Include="Web References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:59190/StudentWebService.asmx">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\localhost.Zipcode.www\</RelPath>
-      <UpdateFromURL>http://localhost:59190/StudentWebService.asmx</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>MySettings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>BusinessObjects_localhost_Zipcode_www_StudentWebService</CachedSettingsPropName>
-    </WebReferenceUrl>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Web References\localhost.Zipcode.www\StudentWebService.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

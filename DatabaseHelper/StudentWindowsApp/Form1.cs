@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessObjects;
+using System.Reflection;
 
 namespace StudentWindowsApp
 {
@@ -176,12 +177,10 @@ namespace StudentWindowsApp
             emailTypeList = emailTypeList.GetAll();
             addressTypeList = new AddressTypeList();
             addressTypeList = addressTypeList.GetAll();
-            studentList = new StudentList();
-            studentList = studentList.GetAll();
-            studentList.Savable += StudentList_Savable;
-            dgvStudent.DataSource = studentList.List;
+
             mnuSave.Enabled = false;
             mnuShowErrors.Enabled = false;
+            cboSearch.DataSource = StudentList.GetSearchList();
         }
 
         private void mnuSave_Click(object sender, EventArgs e)
@@ -197,9 +196,59 @@ namespace StudentWindowsApp
             {
                 frmBrokenRules frm = new frmBrokenRules();
                 frm.Show();
-                frm.BrokenRules = student.BrokenRules;
+                frm.BrokenRules = student.BrokenRules.List;
             }
 
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            studentList = new StudentList();
+            if (cboSearch.Text == "FirstName")
+            {
+                studentList.FirstName = txtSearch.Text;
+                studentList = studentList.Search();
+            }
+            else if (cboSearch.Text == "LastName")
+            {
+                studentList.LastName = txtSearch.Text;
+                studentList = studentList.Search();
+            }
+            else if (cboSearch.Text == "Phone")
+            {
+                studentList.Phone = txtSearch.Text;
+                studentList = studentList.SearchPhoneList();
+            }
+            else if (cboSearch.Text == "Email")
+            {
+                studentList.Email = txtSearch.Text;
+                studentList = studentList.SearchEmailList();
+            }
+            else if (cboSearch.Text == "Address")
+            {
+                studentList.Address = txtSearch.Text;
+                studentList = studentList.SearchAddressList();
+            }
+            else if (cboSearch.Text == "City")
+            {
+                studentList.City = txtSearch.Text;
+                studentList = studentList.SearchAddressList();
+            }
+            else if (cboSearch.Text == "State")
+            {
+                studentList.State = txtSearch.Text;
+                studentList = studentList.SearchAddressList();
+            }
+            else if (cboSearch.Text == "ZipCode")
+            {
+                studentList.ZipCode = txtSearch.Text;
+                studentList = studentList.SearchAddressList();
+            }
+
+            studentList.Savable += StudentList_Savable;
+            dgvStudent.DataSource = studentList.List;
+        }
+       
+
     }
 }

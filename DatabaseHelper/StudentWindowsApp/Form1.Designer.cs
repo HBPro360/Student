@@ -50,10 +50,14 @@
             this.State = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ZipCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AdTypes = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSave = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuShowErrors = new System.Windows.Forms.ToolStripMenuItem();
+            this.cboSearch = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tpStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudent)).BeginInit();
@@ -63,6 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudentEmail)).BeginInit();
             this.tpStudentAddresses.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudentAddress)).BeginInit();
+            this.tabPage1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,6 +77,7 @@
             this.tabControl1.Controls.Add(this.tpStudentPhones);
             this.tabControl1.Controls.Add(this.tpStudentEmails);
             this.tabControl1.Controls.Add(this.tpStudentAddresses);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 24);
             this.tabControl1.Name = "tabControl1";
@@ -255,6 +261,36 @@
             this.AdTypes.HeaderText = "Address Type";
             this.AdTypes.Name = "AdTypes";
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.cboSearch);
+            this.tabPage1.Controls.Add(this.btnSearch);
+            this.tabPage1.Controls.Add(this.txtSearch);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(592, 489);
+            this.tabPage1.TabIndex = 4;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(303, 22);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 2;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(147, 24);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(100, 20);
+            this.txtSearch.TabIndex = 1;
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -277,16 +313,25 @@
             // mnuSave
             // 
             this.mnuSave.Name = "mnuSave";
-            this.mnuSave.Size = new System.Drawing.Size(152, 22);
+            this.mnuSave.Size = new System.Drawing.Size(136, 22);
             this.mnuSave.Text = "Save";
             this.mnuSave.Click += new System.EventHandler(this.mnuSave_Click);
             // 
             // mnuShowErrors
             // 
             this.mnuShowErrors.Name = "mnuShowErrors";
-            this.mnuShowErrors.Size = new System.Drawing.Size(152, 22);
+            this.mnuShowErrors.Size = new System.Drawing.Size(136, 22);
             this.mnuShowErrors.Text = "Show Errors";
             this.mnuShowErrors.Click += new System.EventHandler(this.mnuShowErrors_Click);
+            // 
+            // cboSearch
+            // 
+            this.cboSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSearch.FormattingEnabled = true;
+            this.cboSearch.Location = new System.Drawing.Point(9, 20);
+            this.cboSearch.Name = "cboSearch";
+            this.cboSearch.Size = new System.Drawing.Size(121, 21);
+            this.cboSearch.TabIndex = 3;
             // 
             // frmStudent
             // 
@@ -309,6 +354,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudentEmail)).EndInit();
             this.tpStudentAddresses.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudentAddress)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -344,6 +391,10 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnuSave;
         private System.Windows.Forms.ToolStripMenuItem mnuShowErrors;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.ComboBox cboSearch;
     }
 }
 

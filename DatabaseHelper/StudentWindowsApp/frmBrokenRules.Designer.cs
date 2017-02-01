@@ -46,7 +46,7 @@
             // 
             // BrokenRule
             // 
-            this.BrokenRule.DataPropertyName = "BrokenRule";
+            this.BrokenRule.DataPropertyName = "Rule";
             this.BrokenRule.HeaderText = "";
             this.BrokenRule.Name = "BrokenRule";
             this.BrokenRule.ReadOnly = true;

@@ -156,6 +156,7 @@ Public Class StudentPhone
 
     Private Function IsValid() As Boolean
         Dim result As Boolean = True
+        _BrokenRules.List.Clear()
         If _PhoneTypeID = Guid.Empty Then
             _BrokenRules.List.Add(New BrokenRule("Phone Type must be Selected."))
             result = False
@@ -261,11 +262,11 @@ Public Class StudentPhone
         Return result
     End Function
 
-    Public Function InitializeBusinessData(dr As DataRow)
+    Public Sub InitializeBusinessData(dr As DataRow)
         _StudentID = New Guid(dr("StudentID").ToString())
         _PhoneTypeID = New Guid(dr("PhoneTypeID").ToString())
         _Phone = dr("Phone").ToString()
-    End Function
+    End Sub
 
 #End Region
 

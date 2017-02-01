@@ -83,7 +83,7 @@ Public Class StudentPhoneList
     Public Function isSavable() As Boolean
         Dim result As Boolean = False
         For Each studentPhone As StudentPhone In _List
-            If studentPhone.IsSavable = True Then
+            If studentPhone.BrokenRules.List.Count > 0 Then
                 result = True
                 Exit For
             End If
