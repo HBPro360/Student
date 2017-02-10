@@ -96,6 +96,8 @@
     <Compile Include="Student.vb" />
     <Compile Include="StudentAddress.vb" />
     <Compile Include="StudentAddressList.vb" />
+    <Compile Include="StudentClass.vb" />
+    <Compile Include="StudentClassList.vb" />
     <Compile Include="StudentEmail.vb" />
     <Compile Include="StudentEmailList.vb" />
     <Compile Include="StudentList.vb" />

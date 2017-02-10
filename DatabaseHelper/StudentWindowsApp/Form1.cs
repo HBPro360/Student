@@ -34,6 +34,28 @@ namespace StudentWindowsApp
             dgvStudentEmail.DataError += DgvStudentEmail_DataError;
             dgvStudentAddress.DataError += DgvStudentAddress_DataError;
             dgvStudent.CellMouseClick += DgvStudent_CellMouseClick;
+            cboSearch.SelectedIndexChanged += CboSearch_SelectedIndexChanged;
+            cboSearch2.SelectedIndexChanged += CboSearch2_SelectedIndexChanged;
+        }
+
+        private void CboSearch2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            studentList = new StudentList();
+            studentList.Program = cboSearch2.SelectedValue.ToString();
+        }
+
+        private void CboSearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboSearch.Text == "Program")
+            {
+                cboSearch2.ValueMember = "ID";
+                cboSearch2.DisplayMember = "Name";
+                cboSearch2.DataSource = programList.List;
+
+               
+            }
+
+
         }
 
         private void DgvStudent_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -203,46 +225,58 @@ namespace StudentWindowsApp
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            studentList = new StudentList();
+           
             if (cboSearch.Text == "FirstName")
             {
+                studentList = new StudentList();
                 studentList.FirstName = txtSearch.Text;
                 studentList = studentList.Search();
             }
             else if (cboSearch.Text == "LastName")
             {
+                studentList = new StudentList();
                 studentList.LastName = txtSearch.Text;
                 studentList = studentList.Search();
             }
             else if (cboSearch.Text == "Phone")
             {
+                studentList = new StudentList();
                 studentList.Phone = txtSearch.Text;
                 studentList = studentList.SearchPhoneList();
             }
             else if (cboSearch.Text == "Email")
             {
+                studentList = new StudentList();
                 studentList.Email = txtSearch.Text;
                 studentList = studentList.SearchEmailList();
             }
             else if (cboSearch.Text == "Address")
             {
+                studentList = new StudentList();
                 studentList.Address = txtSearch.Text;
                 studentList = studentList.SearchAddressList();
             }
             else if (cboSearch.Text == "City")
             {
+                studentList = new StudentList();
                 studentList.City = txtSearch.Text;
                 studentList = studentList.SearchAddressList();
             }
             else if (cboSearch.Text == "State")
             {
+                studentList = new StudentList();
                 studentList.State = txtSearch.Text;
                 studentList = studentList.SearchAddressList();
             }
             else if (cboSearch.Text == "ZipCode")
             {
+                studentList = new StudentList();
                 studentList.ZipCode = txtSearch.Text;
                 studentList = studentList.SearchAddressList();
+            }
+            else if (cboSearch.Text == "Program")
+            {
+                studentList = studentList.Search(cboSearch2.SelectedItem.ToString());
             }
 
             studentList.Savable += StudentList_Savable;

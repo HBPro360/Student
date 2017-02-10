@@ -31,7 +31,7 @@ Public Class Builder
             Next
 
         Else
-            Throw New Exception("Table name not specified in cirteria object.")
+            Throw New Exception("Table name not specified in criteria object.")
         End If
         Return sql
     End Function

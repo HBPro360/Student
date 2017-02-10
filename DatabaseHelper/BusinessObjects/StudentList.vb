@@ -167,6 +167,8 @@ Public Class StudentList
         Return Me
     End Function
 
+
+
     Public Function Save() As StudentList
         For Each student As Student In _List
             If student.IsSavable() = True Then
@@ -258,6 +260,17 @@ Public Class StudentList
         Set(value As String)
             If value <> String.Empty Then
                 _Criteria.Fields.Add("ZipCode")
+                _Criteria.Values.Add(value)
+                _Criteria.Types.Add(Type.String_Contains)
+            End If
+        End Set
+    End Property
+
+    Public WriteOnly Property Program() As String
+
+        Set(value As String)
+            If value <> String.Empty Then
+                _Criteria.Fields.Add("ProgramID")
                 _Criteria.Values.Add(value)
                 _Criteria.Types.Add(Type.String_Contains)
             End If
